@@ -1,10 +1,10 @@
 'use client'
-import { createContext, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import AddTask from './components/AddTodo'
 import { getAllTodos } from './service'
 import TodoList from './components/TodoList'
-import { ITodo, ITodoContext } from './types'
-export const TodoContext = createContext<ITodoContext | undefined>(undefined)
+import { ITodo } from './types'
+import { TodoContext } from './context/TodoContext'
 
 export default function Home() {
   const [todos, setTodos] = useState<ITodo[]>([])

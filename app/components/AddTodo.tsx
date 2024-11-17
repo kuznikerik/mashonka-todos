@@ -1,7 +1,7 @@
 'use client'
 
 import { FormEvent, useContext, useRef, useState } from 'react'
-import { TodoContext } from '../page'
+import { TodoContext } from '../context/TodoContext'
 import { addTodo } from '../service'
 import { ITodo } from '../types'
 
