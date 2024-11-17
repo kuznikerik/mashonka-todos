@@ -1,5 +1,3 @@
-import { UUID } from "crypto"
-
 export interface ITodo {
   id: string,
   text: string,

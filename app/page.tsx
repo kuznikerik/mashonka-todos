@@ -20,7 +20,7 @@ export default function Home() {
   return (
     <TodoContext.Provider value={{ todos, setTodos }}>
       <main className="h-dvh max-w-80 w-full mx-auto flex flex-col items-center justify-center">
-        <h1 className="font-bold text-xl text-center mb-4">Mashonka Todo's</h1>
+        <h1 className="font-bold text-xl text-center mb-6">Mashonka Todos</h1>
         <AddTask />
         <TodoList todos={todos} />
       </main>

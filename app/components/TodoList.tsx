@@ -1,4 +1,4 @@
-import { ITodo, ITodoListProps } from '../types'
+import { ITodoListProps } from '../types'
 import Todo from './Todo'
 
 export default function TodoList({ todos }: ITodoListProps) {
