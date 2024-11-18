@@ -5,7 +5,7 @@ import { NextRequest, NextResponse } from 'next/server';
 export async function GET() {
   try {
     const { rows } = await sql`
-      SELECT * FROM mashonka_todos;
+      SELECT * FROM mashonka_todos ORDER BY created DESC;
     `;
     return NextResponse.json(rows)
   } catch (error) {
