@@ -38,7 +38,7 @@ export default function AddTodo() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(newTodo),
       })
-      setTodos((prevTodos: ITodo[]) => [...prevTodos, newTodo])
+      setTodos((prevTodos: ITodo[]) => [newTodo, ...prevTodos])
 
       modalRef.current?.close()
       setInputValue('')
