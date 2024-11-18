@@ -2,7 +2,6 @@ import React, { FormEvent, useContext, useRef, useState } from 'react'
 import { TodoContext } from '../context/TodoContext'
 import { ITodo, ITodoProps } from '../types'
 import { PencilIcon, TrashIcon } from '@heroicons/react/24/outline'
-import { deleteTodo, editTodo } from '../service'
 
 export default function Todo({ todo }: ITodoProps) {
   const context = useContext(TodoContext)
