@@ -38,7 +38,11 @@ export default function Todo({ todo }: ITodoProps) {
         text: inputValue,
         completed: todo.completed,
       }
-      await editTodo(editedTodo)
+      await fetch('/api/edit', {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(editedTodo),
+      })
       setTodos((prevTodos: ITodo[]) =>
         prevTodos.map((todo) =>
           todo.id === editedTodo.id ? editedTodo : todo,
@@ -51,7 +55,11 @@ export default function Todo({ todo }: ITodoProps) {
   }
 
   const handleDelete = async () => {
-    await deleteTodo(todo)
+    await fetch('/api', {
+      method: 'DELETE',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(todo),
+    })
     setTodos((prevTodos: ITodo[]) => prevTodos.filter((t) => t.id !== todo.id))
   }
 
@@ -62,7 +70,11 @@ export default function Todo({ todo }: ITodoProps) {
       text: todo.text,
       completed: e.currentTarget.checked,
     }
-    await editTodo(checkedTodo)
+    await fetch('/api/complete', {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(checkedTodo),
+    })
     setTodos((prevTodos: ITodo[]) =>
       prevTodos.map((todo) =>
         todo.id === checkedTodo.id ? checkedTodo : todo,

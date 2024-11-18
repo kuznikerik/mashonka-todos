@@ -1,7 +1,6 @@
 'use client'
 import { useEffect, useState } from 'react'
 import AddTask from './components/AddTodo'
-import { getAllTodos } from './service'
 import TodoList from './components/TodoList'
 import { ITodo } from './types'
 import { TodoContext } from './context/TodoContext'
@@ -11,8 +10,18 @@ export default function Home() {
 
   useEffect(() => {
     const fetchTodos = async () => {
-      const data = await getAllTodos()
-      setTodos(data)
+      try {
+        const response = await fetch('/api')
+
+        if (!response.ok) {
+          throw new Error(`Error: ${response.statusText}`)
+        }
+
+        const result = await response.json()
+        setTodos(result)
+      } catch (error) {
+        console.log(error)
+      }
     }
     fetchTodos()
   }, [])

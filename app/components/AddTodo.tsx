@@ -2,7 +2,6 @@
 
 import { FormEvent, useContext, useRef, useState } from 'react'
 import { TodoContext } from '../context/TodoContext'
-import { addTodo } from '../service'
 import { ITodo } from '../types'
 
 export default function AddTodo() {
@@ -33,7 +32,12 @@ export default function AddTodo() {
         text: inputValue,
         completed: false,
       }
-      await addTodo(newTodo)
+
+      await fetch('/api', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(newTodo),
+      })
       setTodos((prevTodos: ITodo[]) => [...prevTodos, newTodo])
 
       modalRef.current?.close()
