@@ -17,10 +17,10 @@ export async function GET() {
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json()
-    const { id, text, completed } = body;
+    const { id, text, completed, author } = body;
     await sql`
-      INSERT INTO mashonka_todos (id, text, completed)
-      VALUES (${id}, ${text}, ${completed});
+      INSERT INTO mashonka_todos (id, text, completed, author)
+      VALUES (${id}, ${text}, ${completed}, ${author});
     `;
     return NextResponse.json({ message: 'Data inserted succesfully' })
   } catch (error) {

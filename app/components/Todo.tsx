@@ -36,6 +36,7 @@ export default function Todo({ todo }: ITodoProps) {
         id: todo.id,
         text: inputValue,
         completed: todo.completed,
+        author: todo.author,
       }
       await fetch('/api/edit', {
         method: 'PATCH',
@@ -68,6 +69,7 @@ export default function Todo({ todo }: ITodoProps) {
       id: todo.id,
       text: todo.text,
       completed: e.currentTarget.checked,
+      author: todo.author,
     }
     await fetch('/api/complete', {
       method: 'PATCH',
@@ -83,7 +85,14 @@ export default function Todo({ todo }: ITodoProps) {
 
   return (
     <div className="flex items-center gap-4 py-2">
-      <p className="flex-grow m-0 truncate">{todo.text}</p>
+      <div className="flex-grow flex flex-col">
+        <p className="m-0 truncate">{todo.text}</p>
+        <p className="m-0 text-xs">
+          <span className="text-neutral-content opacity-20">Added by:</span>
+          &nbsp;
+          <span className="text-neutral-content opacity-40">{todo.author}</span>
+        </p>
+      </div>
       <button onClick={handleOpenModal}>
         <PencilIcon className="size-6 ml-auto" />
       </button>

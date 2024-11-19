@@ -1,7 +1,8 @@
 export interface ITodo {
   id: string,
   text: string,
-  completed: boolean
+  completed: boolean,
+  author: string
 }
 
 export interface ITodoContext {

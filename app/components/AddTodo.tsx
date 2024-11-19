@@ -7,6 +7,7 @@ import { ITodo } from '../types'
 export default function AddTodo() {
   const context = useContext(TodoContext)
   const [inputValue, setInputValue] = useState('')
+  const [authorInputValue, setAuthorInputValue] = useState('')
   const modalRef = useRef<HTMLDialogElement>(null)
 
   if (!context) {
@@ -19,18 +20,23 @@ export default function AddTodo() {
     setInputValue(e.currentTarget?.value)
   }
 
+  const handleAuthorInputChange = (e: FormEvent<HTMLInputElement>) => {
+    setAuthorInputValue(e.currentTarget?.value)
+  }
+
   const handleKeyDown = async (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
       e.preventDefault()
 
-      if (!inputValue) {
-        return console.log('No text')
+      if (!inputValue && !authorInputValue) {
+        return console.log('All fields are required')
       }
 
       const newTodo = {
         id: crypto.randomUUID(),
         text: inputValue,
         completed: false,
+        author: authorInputValue,
       }
 
       await fetch('/api', {
@@ -69,9 +75,19 @@ export default function AddTodo() {
             id="add-todo"
             type="text"
             placeholder="Enter a title..."
-            className="input input-bordered w-full"
+            className="input input-bordered w-full mb-4"
             value={inputValue}
             onChange={handleInputChange}
+            onKeyDown={handleKeyDown}
+          />
+          <label htmlFor="todo-author"></label>
+          <input
+            id="todo-author"
+            type="text"
+            placeholder="Enter your name..."
+            className="input input-bordered w-full"
+            value={authorInputValue}
+            onChange={handleAuthorInputChange}
             onKeyDown={handleKeyDown}
           />
         </div>
