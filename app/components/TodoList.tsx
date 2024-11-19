@@ -33,28 +33,15 @@ export default function TodoList() {
 
   return (
     <>
-      {todos.length ? (
-        <>
-          <div className="w-full border-b border-solid dark:border-neutral-content dark:border-opacity-20 pb-2 mb-2">
-            {todoItems.length ? (
-              todoItems
-            ) : (
-              <p className="mb-2 font-bold">All done!</p>
-            )}
+      <>
+        {!!todoItems.length && <div className="w-full">{todoItems}</div>}
+
+        {!!completedTodoItems.length && (
+          <div className="w-full border-t border-solid dark:border-neutral-content dark:border-opacity-20 pt-2 mt-2">
+            {completedTodoItems}
           </div>
-          <div className="w-full">
-            {completedTodoItems.length ? (
-              completedTodoItems
-            ) : (
-              <p className="mt-2 font-bold">
-                None completed, man get yo&apos; ass up!
-              </p>
-            )}
-          </div>
-        </>
-      ) : (
-        <div>List is empty</div>
-      )}
+        )}
+      </>
     </>
   )
 }
