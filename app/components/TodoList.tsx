@@ -33,7 +33,7 @@ export default function TodoList() {
 
   return (
     <>
-      <div className="w-full border-b border-solid dark:border-neutral-content pb-2 mb-2">
+      <div className="w-full border-b border-solid dark:border-neutral-content dark:border-opacity-20 pb-2 mb-2">
         {todoItems.length ? (
           todoItems
         ) : (
