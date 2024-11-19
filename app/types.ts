@@ -14,5 +14,6 @@ export interface ITodoListProps {
 }
 
 export interface ITodoProps {
-  todo: ITodo
+  todo: ITodo,
+  isCompleted: boolean
 }
