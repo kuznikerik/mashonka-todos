@@ -48,6 +48,7 @@ export default function AddTodo() {
 
       modalRef.current?.close()
       setInputValue('')
+      setAuthorInputValue('')
     }
   }
 
